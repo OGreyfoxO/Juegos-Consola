@@ -37,6 +37,31 @@
         nav button:hover {
             background-color: #27ae60;
         }
+        #buscador {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: flex-end; /* Alinea a la derecha */
+            gap: 10px;
+        }
+        #search {
+            padding: 8px;
+            font-size: 16px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #ordenar {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #genero {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
         .container {
             max-width: 1600px;
             margin: 20px auto;
@@ -88,10 +113,30 @@
 <body>
     <h1>Catálogo de Juegos</h1>
     <nav>
-        <button onclick="showList('plus')">PlayStation Plus Extra</button>
+        <button onclick="showList('plus')">PlayStation Plus</button>
         <button onclick="showList('gamepass')">Game Pass</button>
         <button onclick="showList('coincidencias')">Coincidencias</button>
     </nav>
+
+    <!-- Buscador, Ordenar y Filtro por Género -->
+    <div id="buscador">
+        <input type="text" id="search" placeholder="Buscar juego..." oninput="buscarJuego()">
+        <select id="ordenar" onchange="ordenarJuegos()">
+            <option value="asc">Ordenar A-Z</option>
+            <option value="desc">Ordenar Z-A</option>
+        </select>
+        <select id="genero" onchange="filtrarPorGenero()">
+            <option value="">Seleccionar Género</option>
+            <option value="Acción">Acción</option>
+            <option value="Aventura">Aventura</option>
+            <option value="RPG">RPG</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Estrategia">Estrategia</option>
+            <option value="Indie">Indie</option>
+            <option value="Plataformas">Plataformas</option>
+        </select>
+    </div>
+
     <div id="content" class="container"></div>
     
     <script>
@@ -751,27 +796,84 @@
     }
         ];
         
+        let tipoActual = "plus"; // Cambiar esto según la lista seleccionada: 'plus', 'gamepass', 'coincidencias'
+        let juegosFiltrados = juegosPlus; // Variable para almacenar los juegos filtrados por búsqueda y género
+
         function showList(type) {
-            let juegos = [];
-            if (type === 'plus') juegos = juegosPlus;
-            else if (type === 'gamepass') juegos = juegosGamePass;
+            tipoActual = type;
+            if (type === 'plus') juegosFiltrados = juegosPlus;
+            else if (type === 'gamepass') juegosFiltrados = juegosGamePass;
             else if (type === 'coincidencias') {
-                juegos = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+                juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
             }
-            
+
+            showGames();
+        }
+
+        function showGames() {
             const content = document.getElementById('content');
-            content.innerHTML = '<div class="game-list">' + juegos.map(juego => 
+            content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => 
                 `<div class="game">
                     <img src="${juego.portada}" alt="${juego.titulo}">
                     <p>${juego.titulo}</p>
                     <p>${juego.descripcion}</p>
                     <p><strong>Género:</strong> ${juego.genero}</p>
-                    <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
-                    <p><span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'inherit'};"><strong>Crossplay:</strong> ${juego.crossplay}</span></p>
                     <a href="${juego.enlace}" target="_blank">Más información</a>
                 </div>`
             ).join('') + '</div>';
         }
+
+        function buscarJuego() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            
+            // Restaurar juegos filtrados al tipo actual
+            if (searchTerm === "") {
+                if (tipoActual === "plus") juegosFiltrados = juegosPlus;
+                else if (tipoActual === "gamepass") juegosFiltrados = juegosGamePass;
+                else if (tipoActual === "coincidencias") {
+                    juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+                }
+            } else {
+                juegosFiltrados = juegosFiltrados.filter(juego => juego.titulo.toLowerCase().includes(searchTerm));
+            }
+            showGames();
+        }
+
+        function ordenarJuegos() {
+            const order = document.getElementById('ordenar').value;
+            if (order === "asc") {
+                juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+            } else {
+                juegosFiltrados.sort((a, b) => b.titulo.localeCompare(a.titulo));
+            }
+            showGames();
+        }
+
+        function filtrarPorGenero() {
+            const generoSeleccionado = document.getElementById('genero').value;
+            
+            // Filtrar los juegos por género
+            if (generoSeleccionado) {
+                if (tipoActual === "plus") {
+                    juegosFiltrados = juegosPlus.filter(juego => juego.genero === generoSeleccionado);
+                } else if (tipoActual === "gamepass") {
+                    juegosFiltrados = juegosGamePass.filter(juego => juego.genero === generoSeleccionado);
+                } else if (tipoActual === "coincidencias") {
+                    juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo && g.genero === generoSeleccionado));
+                }
+            } else {
+                // Restaurar juegos filtrados al tipo actual si no se ha seleccionado un género
+                if (tipoActual === "plus") juegosFiltrados = juegosPlus;
+                else if (tipoActual === "gamepass") juegosFiltrados = juegosGamePass;
+                else if (tipoActual === "coincidencias") {
+                    juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+                }
+            }
+            showGames();
+        }
+
+        // Mostrar los juegos inicialmente
+        showGames();
 
         // Mostrar la lista de juegos de PlayStation Plus por defecto
         showList('plus');
