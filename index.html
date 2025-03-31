@@ -668,6 +668,86 @@
         coop: "Single Player", 
         jugadores: "1", 
         crossplay: "No" 
+    },
+    { 
+        titulo: "Assassin’s Creed Origins", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "Explora el Antiguo Egipto en este RPG de acción que cuenta la historia del origen de la Hermandad de los Asesinos.", 
+        genero: "Acción, RPG", 
+        coop: "Single Player", 
+        jugadores: "1", 
+        crossplay: "No" 
+    },
+    { 
+        titulo: "Assassin's Creed Valhalla", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "Ponte en la piel de un vikingo en este RPG de mundo abierto lleno de batallas épicas y exploración.", 
+        genero: "Acción, RPG", 
+        coop: "Single Player", 
+        jugadores: "1", 
+        crossplay: "No" 
+    },
+    { 
+        titulo: "Astroneer", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "Explora y remodela mundos en este juego de exploración espacial con mecánicas sandbox y multijugador.", 
+        genero: "Aventura, Exploración", 
+        coop: "Coop", 
+        jugadores: "1-4 Online", 
+        crossplay: "Sí" 
+    },
+    { 
+        titulo: "Back 4 Blood", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "Un shooter cooperativo de los creadores de Left 4 Dead, en el que los jugadores luchan contra hordas de infectados.", 
+        genero: "Acción, Shooter", 
+        coop: "Coop", 
+        jugadores: "1-4 Online", 
+        crossplay: "Sí" 
+    },
+    { 
+        titulo: "Banjo Kazooie: Baches y Cachivaches", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "Un juego de aventuras y construcción de vehículos protagonizado por Banjo y Kazooie en un mundo colorido y divertido.", 
+        genero: "Plataformas, Aventura", 
+        coop: "Single Player", 
+        jugadores: "1", 
+        crossplay: "No" 
+    },
+    { 
+        titulo: "Banjo-Kazooie", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "El clásico juego de plataformas de Rare, donde Banjo y Kazooie deben salvar a Tooty de la malvada Gruntilda.", 
+        genero: "Plataformas, Aventura", 
+        coop: "Single Player", 
+        jugadores: "1", 
+        crossplay: "No" 
+    },
+    { 
+        titulo: "Banjo-Tooie", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "La secuela de Banjo-Kazooie, con un mundo más grande, nuevos movimientos y desafiantes rompecabezas.", 
+        genero: "Plataformas, Aventura", 
+        coop: "Single Player", 
+        jugadores: "1", 
+        crossplay: "No" 
+    },
+    { 
+        titulo: "Batman Arkham Knight", 
+        portada: "https://via.placeholder.com/250", 
+        enlace: "#", 
+        descripcion: "Enfréntate a los villanos de Gotham en esta entrega de la aclamada saga Arkham con el Batimóvil como novedad.", 
+        genero: "Acción, Aventura", 
+        coop: "Single Player", 
+        jugadores: "1", 
+        crossplay: "No" 
     }
         ];
         
@@ -687,7 +767,7 @@
                     <p>${juego.descripcion}</p>
                     <p><strong>Género:</strong> ${juego.genero}</p>
                     <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
-                    <p><strong>Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'inherit'};">${juego.crossplay}</span></p>
+                    <p><span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'inherit'};"><strong>Crossplay:</strong> ${juego.crossplay}</span></p>
                     <a href="${juego.enlace}" target="_blank">Más información</a>
                 </div>`
             ).join('') + '</div>';
