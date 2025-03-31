@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Juegos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50; /* Fondo oscuro */
+            color: #ecf0f1; /* Texto claro */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #34495e;
+            color: white;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #16a085; /* Color de los botones */
+            padding: 10px;
+            text-align: center;
+        }
+        nav button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        nav button:hover {
+            background-color: #27ae60;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #34495e; /* Fondo de la sección de contenido */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+        .game {
+            background-color: #2c3e50; /* Fondo oscuro para los juegos */
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .game:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .game img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .game p {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .game a {
+            color: #2ecc71; /* Enlace verde */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .game a:hover {
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Catálogo de Juegos</h1>
+    <nav>
+        <button onclick="showList('plus')">PlayStation Plus Extra</button>
+        <button onclick="showList('gamepass')">Game Pass</button>
+        <button onclick="showList('coincidencias')">Coincidencias</button>
+    </nav>
+    <div id="content" class="container"></div>
+    
+    <script>
+        const juegosPlus = [
+            { titulo: "A Space for the Unbound", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de aventuras con una narrativa profunda y una estética encantadora.", genero: "Aventura, Indie" },
+            { titulo: "After Us", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de acción en 3D en un mundo post-apocalíptico, explorando el destino de la humanidad.", genero: "Acción, Aventura" },
+            { titulo: "Alex Kidd in Miracle World DX", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Remasterización del clásico de Alex Kidd con gráficos mejorados y nuevas mecánicas.", genero: "Plataformas" },
+            { titulo: "Anno 1800", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de estrategia donde construyes una ciudad en la era industrial.", genero: "Estrategia" },
+            { titulo: "ANNO: Mutationem", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de acción con estilo visual cyberpunk y mecánicas de rol.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Assassin’s Creed Valhalla", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "El último capítulo de la serie, ambientado en la era vikinga.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Assetto Corsa Competizione", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de carreras con una experiencia realista y gráficos de alta calidad.", genero: "Carreras, Simulación" },
+            { titulo: "Atlas Fallen: Reign Of Sand", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de rol de acción en un mundo desértico con mecánicas de combate únicas.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Back 4 Blood: Standard Edition", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego cooperativo de disparos en primera persona, similar a Left 4 Dead.", genero: "Acción, Cooperativo, Shooter" },
+            { titulo: "Bassmaster Fishing", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de pesca que ofrece una experiencia realista en el agua.", genero: "Simulación, Deporte" },
+            { titulo: "Ben 10: Power Trip", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Aventura basada en la famosa serie de televisión con acción y combate.", genero: "Acción, Aventura" },
+            { titulo: "Biped", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de plataformas cooperativo en el que controlas a dos pequeños robots.", genero: "Cooperativo, Plataformas" },
+            { titulo: "Blade Dancer: Lineage of Light", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un RPG de acción con un sistema de combate en tiempo real.", genero: "RPG, Acción" },
+            { titulo: "Blood Bowl 3", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de estrategia basado en el fútbol americano, pero con elementos fantásticos y monstruos.", genero: "Estrategia, Deporte" },
+            { titulo: "Bugsnax", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Una aventura en un mundo de criaturas híbridas entre insectos y bocados.", genero: "Aventura, Casual" },
+            { titulo: "Bus Simulator 21: Next Stop", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador donde eres un conductor de autobús en una ciudad moderna.", genero: "Simulación, Estrategia" },
+            { titulo: "Call of the Sea", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Aventura gráfica ambientada en una isla misteriosa llena de acertijos.", genero: "Aventura, Rompecabezas" },
+            { titulo: "Chicory: A Colorful Tale", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de aventuras en el que usas una brocha mágica para colorear un mundo en blanco y negro.", genero: "Aventura, Indie" },
+            { titulo: "Chivalry 2", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego multijugador de acción medieval con combates a gran escala.", genero: "Acción, Multijugador" },
+            { titulo: "Chernobylite", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de supervivencia y terror ambientado en una versión ficticia de Chernobyl.", genero: "Terror, Supervivencia" },
+            { titulo: "Citizen Sleeper", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de rol narrativo que explora la vida de un ser artificial en un futuro distópico.", genero: "RPG, Ciencia Ficción" },
+            { titulo: "Clash: Artifacts of Chaos", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de acción y combate con mecánicas únicas y un mundo fantástico.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Coffee Talk", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de conversación donde preparas bebidas y escuchas historias de tus clientes.", genero: "Simulación, Narrativo" },
+            { titulo: "Coffee Talk Episode 2: Hibiscus & Butterfly", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Secuela de Coffee Talk, con nuevas historias y personajes.", genero: "Simulación, Narrativo" },
+            { titulo: "Conan Exiles", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de supervivencia y construcción en un mundo de fantasía bárbara.", genero: "Supervivencia, Acción" },
+            { titulo: "Construction Simulator", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de construcción donde tomas el control de una empresa de construcción.", genero: "Simulación" }
+        ];
+        
+        const juegosGamePass = [
+            { titulo: "Juego 2", portada: "https://via.placeholder.com/250", enlace: "#" },
+            { titulo: "Juego 3", portada: "https://via.placeholder.com/250", enlace: "#" }
+        ];
+        
+        function showList(type) {
+            let juegos = [];
+            if (type === 'plus') juegos = juegosPlus;
+            else if (type === 'gamepass') juegos = juegosGamePass;
+            else if (type === 'coincidencias') {
+                juegos = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+            }
+            
+            const content = document.getElementById('content');
+            content.innerHTML = '<div class="game-list">' + juegos.map(juego => 
+                `<div class="game">
+                    <img src="${juego.portada}" alt="${juego.titulo}">
+                    <p>${juego.titulo}</p>
+                    <p>${juego.descripcion}</p>
+                    <p>Género: ${juego.genero}</p>
+                    <a href="${juego.enlace}" target="_blank">Más información</a>
+                </div>`
+            ).join('') + '</div>';
+        }
+
+        // Mostrar la lista de juegos de PlayStation Plus por defecto
+        showList('plus');
+    </script>
+</body>
+</html>
