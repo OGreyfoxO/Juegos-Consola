@@ -138,28 +138,28 @@
             { titulo: "Juego 3", portada: "https://via.placeholder.com/250", enlace: "#" }
         ];
         
-         function showList(listType) {
-            let contentDiv = document.getElementById("content");
-            contentDiv.innerHTML = "";  // Limpiar contenido previo
-
-            let juegos = listType === "plus" ? juegosPlus : [];
-
-            juegos.forEach(juego => {
-                let gameDiv = document.createElement("div");
-                gameDiv.classList.add("game");
-
-                gameDiv.innerHTML = `
+         function showList(type) {
+            let juegos = [];
+            if (type === 'plus') juegos = juegosPlus;
+            else if (type === 'gamepass') juegos = juegosGamePass;
+            else if (type === 'coincidencias') {
+                juegos = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+            }
+            
+            const content = document.getElementById('content');
+            content.innerHTML = '<div class="game-list">' + juegos.map(juego => 
+                `<div class="game">
                     <img src="${juego.portada}" alt="${juego.titulo}">
                     <p>${juego.titulo}</p>
-                    <p><strong>Género:</strong> ${juego.genero}</p>
-                    <p><strong>Descripción:</strong> ${juego.descripcion}</p>
-                    <p><strong>${juego.jugadores} | ${juego.coop}</strong> | <strong>Crossplay:</strong> ${juego.crossplay}</p>
+                    <p>${juego.descripcion}</p>
+                    <p>Género: ${juego.genero}</p>
                     <a href="${juego.enlace}" target="_blank">Más información</a>
-                `;
-                
-                contentDiv.appendChild(gameDiv);
-            });
+                </div>`
+            ).join('') + '</div>';
         }
+
+        // Mostrar la lista de juegos de PlayStation Plus por defecto
+        showList('plus');
     </script>
 </body>
 </html>
