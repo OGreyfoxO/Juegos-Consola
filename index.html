@@ -124,6 +124,7 @@
         <select id="ordenar" onchange="ordenarJuegos()">
             <option value="asc">Ordenar A-Z</option>
             <option value="desc">Ordenar Z-A</option>
+            <option value="crossplay">Crossplay primero</option>
         </select>
         <select id="genero" onchange="filtrarPorGenero()">
             <option value="">Seleccionar Género</option>
@@ -2892,14 +2893,22 @@
         }
 
         function ordenarJuegos() {
-            const order = document.getElementById('ordenar').value;
-            if (order === "asc") {
-                juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
-            } else {
-                juegosFiltrados.sort((a, b) => b.titulo.localeCompare(a.titulo));
-            }
-            showGames();
-        }
+    const order = document.getElementById('ordenar').value;
+    
+    if (order === "asc") {
+        juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    } else if (order === "desc") {
+        juegosFiltrados.sort((a, b) => b.titulo.localeCompare(a.titulo));
+    } else if (order === "crossplay") {
+        juegosFiltrados.sort((a, b) => {
+            if (a.crossplay === "Sí" && b.crossplay !== "Sí") return -1;
+            if (a.crossplay !== "Sí" && b.crossplay === "Sí") return 1;
+            return a.titulo.localeCompare(b.titulo);
+        });
+    }
+    
+    showGames();
+}
 
         function filtrarPorGenero() {
             const generoSeleccionado = document.getElementById('genero').value;
