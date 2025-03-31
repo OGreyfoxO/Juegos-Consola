@@ -96,433 +96,40 @@
     
     <script>
         const juegosPlus = [
-            {
-                titulo: "A Space for the Unbound",
-                portada: "https://i.postimg.cc/Vkh21WS5/MV5-BYjgz-Nz-A4-N2-Ut-MDgz-OC00-N2-Ri-LTg3-ZTYt-NGYw-NTc0-MDEz-Mj-Ew-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg",
-                enlace: "https://example.com/a-space-for-the-unbound",
-                descripcion: "Un juego de aventuras con una narrativa profunda y una estética encantadora.",
-                genero: "Aventura, Indie",
-                jugadores: "Single Player",
-                coop: "Hasta 2 jugadores Local",
-                crossplay: "No"
-            },
-            { 
-        titulo: "After Us", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Explora un mundo surrealista y salva las almas de los animales extintos en esta aventura narrativa.", 
-        genero: "Aventura, Plataforma", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Alex Kidd in Miracle World DX", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un remake del clásico Alex Kidd con gráficos mejorados y niveles adicionales.", 
-        genero: "Plataforma", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Anno 1800", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de estrategia y gestión de ciudades en la Revolución Industrial.", 
-        genero: "Estrategia, Simulación", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "Sí" 
-    },
-    { 
-        titulo: "ANNO: Mutationem", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de acción y rol con estética cyberpunk en 2D y 3D.", 
-        genero: "Acción, RPG", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Assassin’s Creed Valhalla", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Vive la era vikinga y conquista Inglaterra en este RPG de mundo abierto.", 
-        genero: "Acción, RPG", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Assetto Corsa Competizione", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un simulador de carreras que ofrece una experiencia realista de conducción.", 
-        genero: "Carreras, Simulación", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Atlas Fallen: Reign Of Sand", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Explora un vasto desierto en este RPG de acción con combates intensos.", 
-        genero: "Acción, RPG", 
-        coop: "Coop", 
-        jugadores: "2 Local/Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Back 4 Blood: Standard Edition", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un shooter cooperativo de supervivencia contra hordas de zombis.", 
-        genero: "Shooter, Supervivencia", 
-        coop: "Coop", 
-        jugadores: "4 Online", 
-        crossplay: "Sí" 
-    },
-    { 
-        titulo: "Bassmaster Fishing", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un simulador de pesca con modos de competición y exploración.", 
-        genero: "Deportes, Simulación", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Ben 10: Power Trip", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Una aventura en mundo abierto con Ben 10 y sus transformaciones alienígenas.", 
-        genero: "Acción, Aventura", 
-        coop: "Coop", 
-        jugadores: "2 Local", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Biped", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de plataformas y puzzles cooperativo con dos robots.", 
-        genero: "Puzzle, Cooperativo", 
-        coop: "Coop", 
-        jugadores: "2 Local/Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Blade Dancer: Lineage of Light", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un RPG de acción clásico con combates estratégicos.", 
-        genero: "RPG", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Blood Bowl 3", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de estrategia basado en Warhammer y fútbol americano.", 
-        genero: "Estrategia, Deportes", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "Sí" 
-    },
-    { 
-        titulo: "Bugsnax", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Explora una isla llena de criaturas comestibles en esta aventura peculiar.", 
-        genero: "Aventura", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Bus Simulator 21: Next Stop", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Gestiona y conduce autobuses en un mundo abierto.", 
-        genero: "Simulación", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Call of the Sea", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Una aventura de misterio en una isla paradisíaca.", 
-        genero: "Aventura, Puzzle", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Chicory: A Colorful Tale", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de aventuras donde pintas el mundo a tu gusto.", 
-        genero: "Aventura, Puzzle", 
-        coop: "Coop", 
-        jugadores: "2 Local", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Chivalry 2", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de combate medieval en primera persona con grandes batallas multijugador.", 
-        genero: "Acción, Multijugador", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "Sí" 
-    }
-    { 
-        titulo: "Chernobylite", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un RPG de terror y supervivencia ambientado en Chernóbil con mecánicas de exploración y sigilo.", 
-        genero: "Survival Horror, RPG", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Citizen Sleeper", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un RPG narrativo de ciencia ficción donde tomas decisiones críticas en una estación espacial.", 
-        genero: "RPG, Narrativo", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Clash: Artifacts of Chaos", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de acción y aventura con un estilo visual único y un sistema de combate innovador.", 
-        genero: "Acción, Aventura", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Coffee Talk", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un simulador de cafetería con una historia relajante y diálogos con clientes fantásticos.", 
-        genero: "Simulación, Narrativo", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Coffee Talk Episode 2: Hibiscus & Butterfly", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "La secuela del popular Coffee Talk, con nuevas historias y personajes para atender en la cafetería.", 
-        genero: "Simulación, Narrativo", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Conan Exiles", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego de supervivencia en mundo abierto ambientado en el universo de Conan el Bárbaro.", 
-        genero: "Supervivencia, Multijugador", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Construction Simulator", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Construye y gestiona proyectos con maquinaria realista en este simulador de construcción.", 
-        genero: "Simulación", 
-        coop: "Coop", 
-        jugadores: "2 Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Control: Ultimate Edition", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Explora un misterioso edificio gubernamental y desata poderes sobrenaturales en este thriller de acción.", 
-        genero: "Acción, Aventura", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Crime Boss: Rockay City", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un shooter de crimen organizado con un elenco de actores icónicos.", 
-        genero: "Acción, Shooter", 
-        coop: "Coop", 
-        jugadores: "4 Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Cricket 24", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "El simulador de cricket más realista, con equipos y torneos oficiales.", 
-        genero: "Deportes", 
-        coop: "Coop", 
-        jugadores: "2 Local/Online", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Cris Tales", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un RPG por turnos con mecánicas de manipulación del tiempo y un arte pintado a mano.", 
-        genero: "RPG", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Crisis Core – Final Fantasy VII – Reunion", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Una remasterización del clásico de PSP que narra la historia de Zack Fair antes de Final Fantasy VII.", 
-        genero: "RPG, Acción", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Crusader Kings III", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un profundo juego de estrategia y simulación dinástica ambientado en la Edad Media.", 
-        genero: "Estrategia, Simulación", 
-        coop: "Coop", 
-        jugadores: "Multijugador Online", 
-        crossplay: "Sí" 
-    },
-    { 
-        titulo: "Cult of the Lamb", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Conduce un culto oscuro en este juego de acción y gestión con estética adorable.", 
-        genero: "Acción, Gestión", 
-        coop: "Single Player", 
-        jugadores: "1-2 Local", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Cursed to Golf", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un roguelike basado en el golf con poderes sobrenaturales y desafíos dinámicos.", 
-        genero: "Deportes, Roguelike", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Dave the Diver", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Explora el océano y gestiona un restaurante de sushi en esta aventura híbrida.", 
-        genero: "Aventura, Simulación", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Dead by Daylight", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un juego multijugador asimétrico de terror donde un asesino persigue a los supervivientes.", 
-        genero: "Terror, Multijugador", 
-        coop: "Coop", 
-        jugadores: "5 Online", 
-        crossplay: "Sí" 
-    },
-    { 
-        titulo: "Dead Island 2", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Sobrevive a un apocalipsis zombi en Los Ángeles con acción frenética y combate visceral.", 
-        genero: "Acción, Supervivencia", 
-        coop: "Coop", 
-        jugadores: "3 Online", 
-        crossplay: "Sí" 
-    }
-    { 
-        titulo: "Eldest Souls", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un desafiante RPG de acción estilo soulslike con intensos combates contra jefes.", 
-        genero: "RPG, Acción", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Evil Genius 2: World Domination", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un simulador de villano donde construyes tu guarida y planeas la dominación mundial.", 
-        genero: "Estrategia, Simulación", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "FAR: Changing Tides", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Una aventura atmosférica donde navegas por un mundo postapocalíptico con tu embarcación.", 
-        genero: "Aventura, Exploración", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    { 
-        titulo: "Far Cry 6", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un shooter en mundo abierto donde lideras una revolución contra un dictador brutal.", 
-        genero: "Acción, Shooter", 
-        coop: "Coop", 
-        jugadores: "2 Online", 
-        crossplay: "Sí" 
-    }
+            { titulo: "A Space for the Unbound", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de aventuras con una narrativa profunda y una estética encantadora.", genero: "Aventura, Indie" },
+            { titulo: "After Us", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de acción en 3D en un mundo post-apocalíptico, explorando el destino de la humanidad.", genero: "Acción, Aventura" },
+            { titulo: "Alex Kidd in Miracle World DX", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Remasterización del clásico de Alex Kidd con gráficos mejorados y nuevas mecánicas.", genero: "Plataformas" },
+            { titulo: "Anno 1800", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de estrategia donde construyes una ciudad en la era industrial.", genero: "Estrategia" },
+            { titulo: "ANNO: Mutationem", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de acción con estilo visual cyberpunk y mecánicas de rol.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Assassin’s Creed Valhalla", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "El último capítulo de la serie, ambientado en la era vikinga.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Assetto Corsa Competizione", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de carreras con una experiencia realista y gráficos de alta calidad.", genero: "Carreras, Simulación" },
+            { titulo: "Atlas Fallen: Reign Of Sand", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de rol de acción en un mundo desértico con mecánicas de combate únicas.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Back 4 Blood: Standard Edition", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego cooperativo de disparos en primera persona, similar a Left 4 Dead.", genero: "Acción, Cooperativo, Shooter" },
+            { titulo: "Bassmaster Fishing", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de pesca que ofrece una experiencia realista en el agua.", genero: "Simulación, Deporte" },
+            { titulo: "Ben 10: Power Trip", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Aventura basada en la famosa serie de televisión con acción y combate.", genero: "Acción, Aventura" },
+            { titulo: "Biped", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de plataformas cooperativo en el que controlas a dos pequeños robots.", genero: "Cooperativo, Plataformas" },
+            { titulo: "Blade Dancer: Lineage of Light", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un RPG de acción con un sistema de combate en tiempo real.", genero: "RPG, Acción" },
+            { titulo: "Blood Bowl 3", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de estrategia basado en el fútbol americano, pero con elementos fantásticos y monstruos.", genero: "Estrategia, Deporte" },
+            { titulo: "Bugsnax", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Una aventura en un mundo de criaturas híbridas entre insectos y bocados.", genero: "Aventura, Casual" },
+            { titulo: "Bus Simulator 21: Next Stop", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador donde eres un conductor de autobús en una ciudad moderna.", genero: "Simulación, Estrategia" },
+            { titulo: "Call of the Sea", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Aventura gráfica ambientada en una isla misteriosa llena de acertijos.", genero: "Aventura, Rompecabezas" },
+            { titulo: "Chicory: A Colorful Tale", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de aventuras en el que usas una brocha mágica para colorear un mundo en blanco y negro.", genero: "Aventura, Indie" },
+            { titulo: "Chivalry 2", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego multijugador de acción medieval con combates a gran escala.", genero: "Acción, Multijugador" },
+            { titulo: "Chernobylite", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de supervivencia y terror ambientado en una versión ficticia de Chernobyl.", genero: "Terror, Supervivencia" },
+            { titulo: "Citizen Sleeper", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de rol narrativo que explora la vida de un ser artificial en un futuro distópico.", genero: "RPG, Ciencia Ficción" },
+            { titulo: "Clash: Artifacts of Chaos", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Un juego de acción y combate con mecánicas únicas y un mundo fantástico.", genero: "Acción, Aventura, RPG" },
+            { titulo: "Coffee Talk", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de conversación donde preparas bebidas y escuchas historias de tus clientes.", genero: "Simulación, Narrativo" },
+            { titulo: "Coffee Talk Episode 2: Hibiscus & Butterfly", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Secuela de Coffee Talk, con nuevas historias y personajes.", genero: "Simulación, Narrativo" },
+            { titulo: "Conan Exiles", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Juego de supervivencia y construcción en un mundo de fantasía bárbara.", genero: "Supervivencia, Acción" },
+            { titulo: "Construction Simulator", portada: "https://via.placeholder.com/250", enlace: "#", descripcion: "Simulador de construcción donde tomas el control de una empresa de construcción.", genero: "Simulación" }
         ];
         
         const juegosGamePass = [
-    { 
-        titulo: "A Plague Tale: Requiem", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "La secuela de A Plague Tale: Innocence, donde Amicia y Hugo luchan por sobrevivir en un mundo brutal y oscuro.", 
-        genero: "Aventura, Acción", 
-        coop: "Single Player", 
-        jugadores: "1", 
-        crossplay: "No" 
-    },
-    
+            { titulo: "Juego 2", portada: "https://via.placeholder.com/250", enlace: "#" },
+            { titulo: "Juego 3", portada: "https://via.placeholder.com/250", enlace: "#" }
         ];
         
-         function showList(type) {
+        function showList(type) {
             let juegos = [];
             if (type === 'plus') juegos = juegosPlus;
             else if (type === 'gamepass') juegos = juegosGamePass;
@@ -534,7 +141,7 @@
             content.innerHTML = '<div class="game-list">' + juegos.map(juego => 
                 `<div class="game">
                     <img src="${juego.portada}" alt="${juego.titulo}">
-                    <p><strong>${juego.titulo}</strong></p>
+                    <p>${juego.titulo}</p>
                     <p>${juego.descripcion}</p>
                     <p><strong>Género:</strong> ${juego.genero}</p>
                     <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
