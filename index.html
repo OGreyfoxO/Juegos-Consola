@@ -140,7 +140,7 @@
     <div id="content" class="container"></div>
     
     <script>
-        const juegosPlus = [
+        let juegosPlus = [
             {
                 titulo: "A Space for the Unbound",
                 portada: "https://i.postimg.cc/Vkh21WS5/MV5-BYjgz-Nz-A4-N2-Ut-MDgz-OC00-N2-Ri-LTg3-ZTYt-NGYw-NTc0-MDEz-Mj-Ew-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg",
@@ -553,7 +553,7 @@
     }
         ];
         
-        const juegosGamePass = [
+        let juegosGamePass = [
             { 
         titulo: "A Plague Tale: Requiem", 
         portada: "https://store-images.s-microsoft.com/image/apps.4956.13558336166432541.beb57fbe-cc4b-40c5-ba76-c8112867dea2.43b4dea4-61a1-4ffc-81ab-62cf72323363", 
@@ -745,16 +745,6 @@
         crossplay: "Sí" 
     },
     { 
-        titulo: "Back 4 Blood", 
-        portada: "https://via.placeholder.com/250", 
-        enlace: "#", 
-        descripcion: "Un shooter cooperativo de los creadores de Left 4 Dead, en el que los jugadores luchan contra hordas de infectados.", 
-        genero: "Acción, Shooter", 
-        coop: "Coop", 
-        jugadores: "1-4 Online", 
-        crossplay: "Sí" 
-    },
-    { 
         titulo: "Banjo Kazooie: Baches y Cachivaches", 
         portada: "https://via.placeholder.com/250", 
         enlace: "#", 
@@ -819,7 +809,7 @@
                     <p>${juego.descripcion}</p>
                     <p><strong>Género:</strong> ${juego.genero}</p>
                     <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
-                    <p><strong>Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'inherit'};">${juego.crossplay}</span></p>
+                    <p><strong>Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">${juego.crossplay}</span></p>
                     <a href="${juego.enlace}" target="_blank">Más información</a>
                 </div>`
             ).join('') + '</div>';
@@ -854,23 +844,23 @@
         function filtrarPorGenero() {
             const generoSeleccionado = document.getElementById('genero').value;
             
-            // Filtrar los juegos por género
-            if (generoSeleccionado) {
-                if (tipoActual === "plus") {
-                    juegosFiltrados = juegosPlus.filter(juego => juego.genero === generoSeleccionado);
-                } else if (tipoActual === "gamepass") {
-                    juegosFiltrados = juegosGamePass.filter(juego => juego.genero === generoSeleccionado);
-                } else if (tipoActual === "coincidencias") {
-                    juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo && g.genero === generoSeleccionado));
-                }
-            } else {
-                // Restaurar juegos filtrados al tipo actual si no se ha seleccionado un género
-                if (tipoActual === "plus") juegosFiltrados = juegosPlus;
-                else if (tipoActual === "gamepass") juegosFiltrados = juegosGamePass;
-                else if (tipoActual === "coincidencias") {
-                    juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
-                }
-            }
+           // Filtrar los juegos por género (contiene la palabra)
+if (generoSeleccionado) {
+    if (tipoActual === "plus") {
+        juegosFiltrados = juegosPlus.filter(juego => juego.genero && juego.genero.toLowerCase().includes(generoSeleccionado.toLowerCase()));
+    } else if (tipoActual === "gamepass") {
+        juegosFiltrados = juegosGamePass.filter(juego => juego.genero && juego.genero.toLowerCase().includes(generoSeleccionado.toLowerCase()));
+    } else if (tipoActual === "coincidencias") {
+        juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo && g.genero && g.genero.toLowerCase().includes(generoSeleccionado.toLowerCase())));
+    }
+} else {
+    // Restaurar juegos filtrados al tipo actual si no se ha seleccionado un género
+    if (tipoActual === "plus") juegosFiltrados = juegosPlus;
+    else if (tipoActual === "gamepass") juegosFiltrados = juegosGamePass;
+    else if (tipoActual === "coincidencias") {
+        juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+    }
+}
             showGames();
         }
 
