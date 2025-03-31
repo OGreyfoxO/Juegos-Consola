@@ -66,23 +66,23 @@
     <div id="content" class="game-list"></div>
     
     <script>
-        // URL de la API que devuelve los juegos de Game Pass en formato JSON
-        const apiUrl = 'https://github.com/OGreyfoxO/API-Game-Pass/blob/main/Game-Pass-API-main/output/formattedGameProperties_console_ES.json'; // Cambia esto por la URL real de la API
+        // URL del archivo JSON con los juegos (desde el repositorio de GitHub)
+        const apiUrl = 'https://github.com/OGreyfoxO/API-Game-Pass/blob/main/Game-Pass-API-main/output/formattedGameProperties_console_ES.json';
 
-        // Función para cargar los juegos del Game Pass desde la API
+        // Función para cargar los juegos del Game Pass desde la URL
         async function loadGamePassGames() {
             try {
                 const response = await fetch(apiUrl);
-                const data = await response.json(); // Asumiendo que la API devuelve el JSON con los juegos
+                const data = await response.json(); // Suponiendo que la API devuelve el JSON con los juegos
 
-                // Asegurarse de que 'products' existe en el JSON (lo adaptamos a tu estructura)
-                const games = data.products || [];
+                // Asegurarse de que 'formattedGameProperties_console_ES' existe en el JSON
+                const games = data.formattedGameProperties_console_ES || [];
                 const content = document.getElementById('content');
 
                 // Mostrar los juegos en la página
                 content.innerHTML = '<div class="game-list">' + games.map(game =>
                     `<div class="game">
-                        <img src="${game.images?.BoxArt || 'https://via.placeholder.com/250'}" alt="${game.productTitle}">
+                        <img src="${game.images?.BoxArt[0] || 'https://via.placeholder.com/250'}" alt="${game.productTitle}">
                         <p>${game.productTitle}</p>
                         <p><strong>Categorías:</strong> ${game.categories ? game.categories.join(', ') : 'No disponible'}</p>
                         <a href="https://www.xbox.com/es-ES/games/${game.productId}" target="_blank">Más información</a>
