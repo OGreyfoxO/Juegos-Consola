@@ -805,11 +805,11 @@
             content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => 
                 `<div class="game">
                     <img src="${juego.portada}" alt="${juego.titulo}">
-                    <p>${juego.titulo}</p>
+                    <p><strong>${juego.titulo}</strong></p>
                     <p>${juego.descripcion}</p>
                     <p><strong>Género:</strong> ${juego.genero}</p>
                     <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
-                    <p><strong>Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">${juego.crossplay}</span></p>
+                    <p><strong style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};"> ${juego.crossplay || 'No disponible'}</span></p>
                     <a href="${juego.enlace}" target="_blank">Más información</a>
                 </div>`
             ).join('') + '</div>';
