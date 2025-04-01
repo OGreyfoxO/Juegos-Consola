@@ -2847,7 +2847,30 @@
     
         ];
 
-        // Función para cargar el JSON desde el repositorio de GitHub
+        let tipoActual = "plus"; // Cambiar esto según la lista seleccionada: 'plus', 'gamepass', 'coincidencias'
+let juegosFiltrados = []; // Inicializamos juegosFiltrados
+
+// Definir las listas de juegos
+let juegosPlus = []; // Asegúrate de que esta variable tenga los juegos de PlayStation Plus
+let juegosGamePass = []; // Asegúrate de que esta variable tenga los juegos de Game Pass
+
+function showList(type) {
+    tipoActual = type;
+    if (type === 'plus') {
+        juegosFiltrados = juegosPlus;
+    } else if (type === 'gamepass') {
+        juegosFiltrados = juegosGamePass;
+    } else if (type === 'coincidencias') {
+        // Filtra los juegos que están tanto en juegosPlus como en juegosGamePass por el título
+        juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+    }
+
+    // Llamar a la función de filtrado y búsqueda
+    actualizarJuegosFiltrados(); 
+    showGames(juegosFiltrados); // Asegúrate de pasar juegosFiltrados aquí
+}
+
+// Función para cargar el JSON desde el repositorio de GitHub
 async function cargarDatosJuegos() {
     try {
         const response = await fetch('datosjuegos.json');
@@ -2859,31 +2882,17 @@ async function cargarDatosJuegos() {
         const datosJuegos = await response.json();
 
         // Llamar a la función para mostrar los juegos una vez se cargue el JSON
-        showGames();
+        showGames(datosJuegos);
     } catch (error) {
         console.error('Hubo un problema al cargar el JSON:', error);
     }
 }
-        
-        let tipoActual = "plus"; // Cambiar esto según la lista seleccionada: 'plus', 'gamepass', 'coincidencias'
-        let juegosFiltrados = juegosPlus; // Variable para almacenar los juegos filtrados por búsqueda y género
-
-        function showList(type) {
-            tipoActual = type;
-            if (type === 'plus') juegosFiltrados = juegosPlus;
-            else if (type === 'gamepass') juegosFiltrados = juegosGamePass;
-            else if (type === 'coincidencias') {
-                juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
-            }
-
-            showGames();
-        }
-
 
 // Función para mostrar los juegos en el HTML
-function showGames() {
+function showGames(juegos) {
     const content = document.getElementById('content');
-    content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => {
+    content.innerHTML = '<div class="game-list">' + juegos.map(juego => {
+        // Aquí busco los datos de cada juego en el JSON
         const gameData = datosJuegos.find(j => j.productTitle === juego.titulo);
         
         const newPortada = gameData ? gameData.images.Poster[0] : juego.portada;
