@@ -2849,42 +2849,13 @@
 
         let tipoActual = "plus"; // Cambiar esto según la lista seleccionada: 'plus', 'gamepass', 'coincidencias'
 let juegosFiltrados = juegosPlus; // Variable para almacenar los juegos filtrados por búsqueda y género
-
-function showList(type) {
-    tipoActual = type;
-    if (type === 'plus') juegosFiltrados = juegosPlus;
-    else if (type === 'gamepass') juegosFiltrados = juegosGamePass;
-    else if (type === 'coincidencias') {
-        juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
-    }
-
-    actualizarJuegosFiltrados(); // Llamar a la función de filtrado y búsqueda
-}
-
-// Función para cargar el JSON desde el repositorio de GitHub
-async function cargarDatosJuegos() {
-    try {
-        const response = await fetch('datosjuegos.json');
-        
-        if (!response.ok) {
-            throw new Error('Error al cargar el archivo JSON');
-        }
-
-        const datosJuegos = await response.json();
-
-        // Llamar a la función para mostrar los juegos una vez se cargue el JSON
-        showGames(datosJuegos);
-    } catch (error) {
-        console.error('Hubo un problema al cargar el JSON:', error);
-    }
-}
+let datosJuegos = []; // Definir la variable para los datos de juegos
 
 // Función para mostrar los juegos en el HTML
-function showGames(datosJuegos) {
+function showGames() {
     const content = document.getElementById('content');
     content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => {
         const gameData = datosJuegos.find(j => j.productTitle === juego.titulo);
-        
         const newPortada = gameData ? gameData.images.Poster[0] : juego.portada;
 
         return `
@@ -2901,11 +2872,27 @@ function showGames(datosJuegos) {
     }).join('') + '</div>';
 }
 
-// Llamar a la función para cargar los datos al iniciar la página
-cargarDatosJuegos(); // Aquí se carga el JSON y luego se muestran los juegos
+// Función para cargar el JSON desde el repositorio de GitHub
+async function cargarDatosJuegos() {
+    try {
+        const response = await fetch('datosjuegos.json');
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo JSON');
+        }
 
-// Función optimizada para filtrar, buscar y mostrar juegos
-function actualizarJuegosFiltrados() {
+        datosJuegos = await response.json();
+
+        // Llamar a la función para mostrar los juegos una vez se cargue el JSON
+        showGames();
+    } catch (error) {
+        console.error('Hubo un problema al cargar el JSON:', error);
+    }
+}
+
+// Función para actualizar los juegos filtrados según los filtros aplicados
+async function actualizarJuegosFiltrados() {
+    // Filtrar según el tipo
     if (tipoActual === "plus") {
         juegosFiltrados = juegosPlus;
     } else if (tipoActual === "gamepass") {
@@ -2913,20 +2900,20 @@ function actualizarJuegosFiltrados() {
     } else if (tipoActual === "coincidencias") {
         juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
     }
-    
+
     // Filtrar por género
     const generoSeleccionado = document.getElementById('genero').value;
     if (generoSeleccionado) {
         juegosFiltrados = juegosFiltrados.filter(juego => juego.genero && juego.genero.toLowerCase().includes(generoSeleccionado.toLowerCase()));
     }
-    
+
     // Buscar por título
     const searchTerm = document.getElementById('search').value.toLowerCase();
     if (searchTerm !== "") {
         juegosFiltrados = juegosFiltrados.filter(juego => juego.titulo.toLowerCase().includes(searchTerm));
     }
-    
-    showGames(datosJuegos); // Llamar a showGames después de actualizar los filtros
+
+    showGames(); // Mostrar los juegos filtrados
 }
 
 // Función para ordenar los juegos
@@ -2943,8 +2930,23 @@ function ordenarJuegos() {
             return a.titulo.localeCompare(b.titulo);
         });
     }
-    showGames(datosJuegos); // Llamar a showGames después de ordenar
+    showGames(); // Llamar a showGames después de ordenar
 }
+
+// Función para cambiar entre las listas (Plus, GamePass, Coincidencias)
+function showList(type) {
+    tipoActual = type;
+    if (type === 'plus') juegosFiltrados = juegosPlus;
+    else if (type === 'gamepass') juegosFiltrados = juegosGamePass;
+    else if (type === 'coincidencias') {
+        juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+    }
+
+    actualizarJuegosFiltrados(); // Llamar a la función de filtrado y búsqueda
+}
+
+// Llamar a la función para cargar los datos al iniciar la página
+cargarDatosJuegos(); // Aquí se carga el JSON y luego se muestran los juegos
 
 // Mostrar la lista de juegos de PlayStation Plus por defecto
 showList('plus');
@@ -2953,6 +2955,7 @@ showList('plus');
 document.getElementById('genero').addEventListener('change', actualizarJuegosFiltrados);
 document.getElementById('search').addEventListener('input', actualizarJuegosFiltrados);
 document.getElementById('ordenar').addEventListener('change', ordenarJuegos);
+
 
     </script>
 </body>
