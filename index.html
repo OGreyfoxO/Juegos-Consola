@@ -2861,20 +2861,53 @@
             showGames();
         }
 
-        function showGames() {
-            const content = document.getElementById('content');
-            content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => 
-                `<div class="game">
-                    <img src="${juego.portada}" alt="${juego.titulo}">
-                    <p><strong>${juego.titulo}</strong></p>
-                    <p style="text-align: justify;">${juego.descripcion}</p>
-                    <p><strong>Género:</strong> ${juego.genero}</p>
-                    <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
-                    <p><strong style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};"> ${juego.crossplay || 'No disponible'}</span></p>
-                    <a href="${juego.enlace}" target="_blank">Más información</a>
-                </div>`
-            ).join('') + '</div>';
+        // Función para cargar el JSON desde el repositorio de GitHub
+async function cargarDatosJuegos() {
+    try {
+        // URL del JSON en el repositorio de GitHub (ajustar según la estructura de tu repositorio)
+        const response = await fetch('datosjuegos.json');
+        
+        // Verificar si la respuesta fue exitosa
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo JSON');
         }
+
+        // Convertir el JSON a objeto
+        const datosJuegos = await response.json();
+
+        // Llamar a la función para mostrar los juegos una vez se cargue el JSON
+        showGames(datosJuegos);
+    } catch (error) {
+        console.error('Hubo un problema al cargar el JSON:', error);
+    }
+}
+
+// Función para mostrar los juegos en el HTML
+function showGames(datosJuegos) {
+    const content = document.getElementById('content');
+    content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => {
+        // Buscar la portada correspondiente en el JSON de datosJuegos
+        const gameData = datosJuegos.find(j => j.productTitle === juego.titulo);
+        
+        // Si se encuentra el juego, usar la imagen del JSON
+        const newPortada = gameData ? gameData.images.Poster[0] : juego.portada;
+
+        return `
+            <div class="game">
+                <img src="${newPortada}" alt="${juego.titulo}">
+                <p><strong>${juego.titulo}</strong></p>
+                <p style="text-align: justify;">${juego.descripcion}</p>
+                <p><strong>Género:</strong> ${juego.genero}</p>
+                <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
+                <p><strong style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};"> ${juego.crossplay || 'No disponible'}</span></p>
+                <a href="${juego.enlace}" target="_blank">Más información</a>
+            </div>
+        `;
+    }).join('') + '</div>';
+}
+
+// Llamar a la función para cargar los datos al iniciar la página
+showGames();
 
         function buscarJuego() {
             const searchTerm = document.getElementById('search').value.toLowerCase();
