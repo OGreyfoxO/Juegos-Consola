@@ -2864,7 +2864,7 @@ function showList(type) {
 // Función para cargar el JSON desde el repositorio de GitHub
 async function cargarDatosJuegos() {
     try {
-        const response = await fetch('datosjuegos.json');
+        const response = await fetch('https://github.com/OGreyfoxO/Juegos-Consola/blob/main/datosjuegos.json');
         
         if (!response.ok) {
             throw new Error('Error al cargar el archivo JSON');
