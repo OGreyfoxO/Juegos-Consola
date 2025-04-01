@@ -2879,21 +2879,31 @@ async function cargarDatosJuegos() {
             showGames();
         }
 
-        function showGames() {
-            const content = document.getElementById('content');
-            content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => 
-                `<div class="game">
-                    <img src="${juego.portada}" alt="${juego.titulo}">
-                    <p><strong>${juego.titulo}</strong></p>
-                    <p style="text-align: justify;">${juego.descripcion}</p>
-                    <p><strong>Género:</strong> ${juego.genero}</p>
-                    <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
-                    <p><strong style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};"> ${juego.crossplay || 'No disponible'}</span></p>
-                    <a href="${juego.enlace}" target="_blank">Más información</a>
-                </div>`
-            ).join('') + '</div>';
-        }
 
+// Función para mostrar los juegos en el HTML
+function showGames(datosJuegos) {
+    const content = document.getElementById('content');
+    content.innerHTML = '<div class="game-list">' + juegosFiltrados.map(juego => {
+        const gameData = datosJuegos.find(j => j.productTitle === juego.titulo);
+        
+        const newPortada = gameData ? gameData.images.Poster[0] : juego.portada;
+
+        return `
+            <div class="game">
+                <img src="${newPortada}" alt="${juego.titulo}">
+                <p><strong>${juego.titulo}</strong></p>
+                <p style="text-align: justify;">${juego.descripcion}</p>
+                <p><strong>Género:</strong> ${juego.genero}</p>
+                <p><strong>${juego.jugadores} | ${juego.coop}</strong></p>
+                <p><strong style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};">Crossplay:</strong> <span style="color: ${juego.crossplay === 'Sí' ? 'green' : 'red'};"> ${juego.crossplay || 'No disponible'}</span></p>
+                <a href="${juego.enlace}" target="_blank">Más información</a>
+            </div>
+        `;
+    }).join('') + '</div>';
+}
+
+
+        
         function buscarJuego() {
             const searchTerm = document.getElementById('search').value.toLowerCase();
             
