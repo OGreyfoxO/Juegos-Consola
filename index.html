@@ -2873,7 +2873,7 @@ async function cargarDatosJuegos() {
         const datosJuegos = await response.json();
 
         // Llamar a la función para mostrar los juegos una vez se cargue el JSON
-        showGames(datosJuegos);
+        showGames();
     } catch (error) {
         console.error('Hubo un problema al cargar el JSON:', error);
     }
@@ -2926,7 +2926,7 @@ function actualizarJuegosFiltrados() {
         juegosFiltrados = juegosFiltrados.filter(juego => juego.titulo.toLowerCase().includes(searchTerm));
     }
     
-    showGames(datosJuegos); // Llamar a showGames después de actualizar los filtros
+    showGames(); // Llamar a showGames después de actualizar los filtros
 }
 
 // Función para ordenar los juegos
@@ -2943,7 +2943,7 @@ function ordenarJuegos() {
             return a.titulo.localeCompare(b.titulo);
         });
     }
-    showGames(datosJuegos); // Llamar a showGames después de ordenar
+    showGames(); // Llamar a showGames después de ordenar
 }
 
 // Mostrar la lista de juegos de PlayStation Plus por defecto
