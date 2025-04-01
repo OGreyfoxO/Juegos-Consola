@@ -2858,7 +2858,7 @@ function showList(type) {
         juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
     }
 
-    showGames(); // Aquí se asume que ya se tienen los juegos en juegosFiltrados
+    actualizarJuegosFiltrados(); // Llamar a la función de filtrado y búsqueda
 }
 
 // Función para cargar el JSON desde el repositorio de GitHub
@@ -2904,24 +2904,34 @@ function showGames(datosJuegos) {
 // Llamar a la función para cargar los datos al iniciar la página
 cargarDatosJuegos(); // Aquí se carga el JSON y luego se muestran los juegos
 
-function buscarJuego() {
-    const searchTerm = document.getElementById('search').value.toLowerCase();
+// Función optimizada para filtrar, buscar y mostrar juegos
+function actualizarJuegosFiltrados() {
+    if (tipoActual === "plus") {
+        juegosFiltrados = juegosPlus;
+    } else if (tipoActual === "gamepass") {
+        juegosFiltrados = juegosGamePass;
+    } else if (tipoActual === "coincidencias") {
+        juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
+    }
     
-    if (searchTerm === "") {
-        if (tipoActual === "plus") juegosFiltrados = juegosPlus;
-        else if (tipoActual === "gamepass") juegosFiltrados = juegosGamePass;
-        else if (tipoActual === "coincidencias") {
-            juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
-        }
-    } else {
+    // Filtrar por género
+    const generoSeleccionado = document.getElementById('genero').value;
+    if (generoSeleccionado) {
+        juegosFiltrados = juegosFiltrados.filter(juego => juego.genero && juego.genero.toLowerCase().includes(generoSeleccionado.toLowerCase()));
+    }
+    
+    // Buscar por título
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    if (searchTerm !== "") {
         juegosFiltrados = juegosFiltrados.filter(juego => juego.titulo.toLowerCase().includes(searchTerm));
     }
-    showGames(); // Llamar a showGames después de filtrar
+    
+    showGames(datosJuegos); // Llamar a showGames después de actualizar los filtros
 }
 
+// Función para ordenar los juegos
 function ordenarJuegos() {
     const order = document.getElementById('ordenar').value;
-    
     if (order === "asc") {
         juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
     } else if (order === "desc") {
@@ -2933,33 +2943,17 @@ function ordenarJuegos() {
             return a.titulo.localeCompare(b.titulo);
         });
     }
-    
-    showGames(); // Llamar a showGames después de ordenar
-}
-
-function filtrarPorGenero() {
-    const generoSeleccionado = document.getElementById('genero').value;
-    
-    if (generoSeleccionado) {
-        if (tipoActual === "plus") {
-            juegosFiltrados = juegosPlus.filter(juego => juego.genero && juego.genero.toLowerCase().includes(generoSeleccionado.toLowerCase()));
-        } else if (tipoActual === "gamepass") {
-            juegosFiltrados = juegosGamePass.filter(juego => juego.genero && juego.genero.toLowerCase().includes(generoSeleccionado.toLowerCase()));
-        } else if (tipoActual === "coincidencias") {
-            juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo && g.genero && g.genero.toLowerCase().includes(generoSeleccionado.toLowerCase())));
-        }
-    } else {
-        if (tipoActual === "plus") juegosFiltrados = juegosPlus;
-        else if (tipoActual === "gamepass") juegosFiltrados = juegosGamePass;
-        else if (tipoActual === "coincidencias") {
-            juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
-        }
-    }
-    showGames(); // Llamar a showGames después de filtrar por género
+    showGames(datosJuegos); // Llamar a showGames después de ordenar
 }
 
 // Mostrar la lista de juegos de PlayStation Plus por defecto
 showList('plus');
+
+// Eventos de actualización de los filtros
+document.getElementById('genero').addEventListener('change', actualizarJuegosFiltrados);
+document.getElementById('search').addEventListener('input', actualizarJuegosFiltrados);
+document.getElementById('ordenar').addEventListener('change', ordenarJuegos);
+
 
     </script>
 </body>
