@@ -2846,6 +2846,24 @@
 }
     
         ];
+
+        // Función para cargar el JSON desde el repositorio de GitHub
+async function cargarDatosJuegos() {
+    try {
+        const response = await fetch('datosjuegos.json');
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo JSON');
+        }
+
+        const datosJuegos = await response.json();
+
+        // Llamar a la función para mostrar los juegos una vez se cargue el JSON
+        showGames(datosJuegos);
+    } catch (error) {
+        console.error('Hubo un problema al cargar el JSON:', error);
+    }
+}
         
         let tipoActual = "plus"; // Cambiar esto según la lista seleccionada: 'plus', 'gamepass', 'coincidencias'
         let juegosFiltrados = juegosPlus; // Variable para almacenar los juegos filtrados por búsqueda y género
