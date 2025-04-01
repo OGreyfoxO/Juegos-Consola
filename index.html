@@ -2858,8 +2858,7 @@ function showList(type) {
         juegosFiltrados = juegosPlus.filter(j => juegosGamePass.some(g => g.titulo === j.titulo));
     }
 
-    // Actualizar los juegos filtrados y luego mostrar
-    actualizarJuegosFiltrados();
+    actualizarJuegosFiltrados(); // Llamar a la función de filtrado y búsqueda
 }
 
 // Función para cargar el JSON desde el repositorio de GitHub
@@ -2902,6 +2901,9 @@ function showGames(datosJuegos) {
     }).join('') + '</div>';
 }
 
+// Llamar a la función para cargar los datos al iniciar la página
+cargarDatosJuegos(); // Aquí se carga el JSON y luego se muestran los juegos
+
 // Función optimizada para filtrar, buscar y mostrar juegos
 function actualizarJuegosFiltrados() {
     if (tipoActual === "plus") {
@@ -2924,8 +2926,7 @@ function actualizarJuegosFiltrados() {
         juegosFiltrados = juegosFiltrados.filter(juego => juego.titulo.toLowerCase().includes(searchTerm));
     }
     
-    // Actualizar los juegos filtrados en el HTML
-    showGames(datosJuegos);
+    showGames(datosJuegos); // Llamar a showGames después de actualizar los filtros
 }
 
 // Función para ordenar los juegos
@@ -2942,8 +2943,7 @@ function ordenarJuegos() {
             return a.titulo.localeCompare(b.titulo);
         });
     }
-    // Llamar a la función de mostrar los juegos después de ordenar
-    showGames(datosJuegos);
+    showGames(datosJuegos); // Llamar a showGames después de ordenar
 }
 
 // Mostrar la lista de juegos de PlayStation Plus por defecto
@@ -2953,7 +2953,6 @@ showList('plus');
 document.getElementById('genero').addEventListener('change', actualizarJuegosFiltrados);
 document.getElementById('search').addEventListener('input', actualizarJuegosFiltrados);
 document.getElementById('ordenar').addEventListener('change', ordenarJuegos);
-
 
     </script>
 </body>
